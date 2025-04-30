@@ -4,8 +4,28 @@
 | Summary                                                           |
 |-----------------------------------------------------------------|
 |This project's intent is to automate the process of standardizing the test procedures that we get from the cleint, into the EMS ISO controled documents. |
- 
 
+--- 
+
+## 🔄 Workflow Overview
+
+1. Place raw files into `input_docs/`
+2. Run `main.py` and choose the file to process
+3. File is parsed by the appropriate module (`docx`, `pdf`, etc.)
+4. Extracted text is passed to the formatter
+5. Formatter applies rules + loads the template
+6. Standardized file is saved to `output/standardized_docs/`
+
+---
+
+## 🖥️ Usage
+
+- $ python main.py
+- Enter full file name (e.g., test.docx, test.pdf): test.docx
+- ✅ File parsed successfully.
+- 📁 Standardized document saved to output/standardized_docs/test_standardized.docx
+
+---
 
 ## 🧰 Tech Stack
 

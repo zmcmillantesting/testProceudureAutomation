@@ -1,4 +1,4 @@
 python-docx
 PyPDF2
-
+pdfplumber
 

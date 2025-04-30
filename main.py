@@ -25,8 +25,12 @@ def get_file_path(filename):
                     for para in extracted_text:
                         print(f"Style: {para['style']}, Text: {para['text']}")
         elif filename.endswith(".pdf"):
-            pass #TODO: send to pdf_parser.py
-            #return pdf_parser.get_text_from_pdf(filePath)
+            if os.path.exists(filePath):
+                extracted_text = get_text_from_pdf(filePath)
+                if extracted_text:
+                    print("Extracted text from PDF file:")
+                    for para in extracted_text:
+                        print(f"Text: {para['style']}, Text: {para['text']}")
 
     else:
         print("File not found. Please check the file name and try again.")

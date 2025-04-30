@@ -1,0 +1,30 @@
+1.	We commonly have issues where the vendor doesn�t set the fuses correctly. And the divide by 8 is left on. This causes the max speed to be 50 Cycles per min. 
+        so if you can verify that is correct then that would be extremely helpful. Then after it is set then turn it back to the off position 0 VDC. 
+
+2.	Are we tuning anything with the trim pot TM1? 
+	a.	Right now we have not been calibrating anything to the trim pot. We are simply using VCC as max and GND as low. 
+	b.	The trim pot can be used for testing for verification of the program. 
+		i.	When set to 0 vdc the output shuld have 0 cicles per min
+		ii.	When set to 5 VDC the output shuld be 400 cicls per min. 
+
+3.	Is there a blinking LED after the assembly is programmed that needs to be verified to be sure it was programed currectly? 
+	a.	The customer requested that we remove the test LEDs because they were distracting. The pads are styll there but are just not populated. 
+	b.	I can send you a valve with an LED indicator that you can put on the device and view the sycle rate. 
+
+4.	fixturs needed 
+	atmel ice programer/TF038
+	TF045 WHITE KNIGHT 8600-XX-0026 (all suplys in box)
+
+5.       programe/ test instruction
+		a.  open microchip studio.
+			a1. go to (tools>device programing). set up like this ([atmel-ice] [ATtiny841 or ATtiny441] [isp]) pick coralted softwair in memories.
+ 			a2. go to fuses and set it to ([32 kHz] [disabled] [disabled] [on] [off] [off] [on] [off] [on] [n/a] [off] [off] [int. rc osc.8mHz;])
+
+6.	set power suply to 24v. Atatch fixtur wiers from (TF045) to the powur supplie. Then plug in sulonoid and power in to the board.
+	6a. plug (TF038) in to computer and conect the riben wier with pogo pins to the avr slot on the programer. push pins against the corsponding pads on the back 
+           of the board and use the hot key that is in the firmwair folder to program the board.
+
+7.	sort T-pot/trimpot acrostpintuand3 the led should blink faster. Then sort 1and2 it should blinck slower. Turn t-pot to 0 sycles per min and marck corner with 
+         gold sharpy to show it is done.
+
+

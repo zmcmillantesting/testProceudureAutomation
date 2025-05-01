@@ -1,43 +1,45 @@
 import os
 from parser.docx_parser import get_text_from_docx
-print("import from docx_parser success")
 from parser.txt_parser import get_text_from_txt
-print("import from txt_parser success")
 from parser.pdf_parser import get_text_from_pdf
-print("import from pdf_parser success")
-
-# from pdf import PDF
+from formatter.standardizer import apply_standard_formatting
 
 def main():
     filename = input("Enter full file name e.g. example.txt or example.pdf: ")
-    get_file_path(filename)
-    # filePath = "input_docs/" + filename
+    process_file(filename)
 
+def process_file(filename):
+    input_path = os.path.join("input_docs", filename)
+    output_filename = f"standardized_{os.path.splitext(filename)[0]}.docx"
+    output_path = os.path.join("standardized_docs", output_filename)
 
-def get_file_path(filename):
-    filePath = "input_docs/" + filename
+    # Ensure output directory exists
+    os.makedirs("standardized_docs", exist_ok=True)
 
-    if os.path.exists(filePath):
-        print("File found.")
+    if os.path.exists(input_path):
+        print(f"Processing file: {filename}")
+        
         if filename.endswith(".docx"):
-            extracted_text = get_text_from_docx(filePath)
+            extracted_text = get_text_from_docx(input_path)
             if extracted_text:
-                print("Extracted text from DOCX file:")
-                for para in extracted_text:
-                    print(f"Style: {para['style']}, Text: {para['text']}")
+                print("Successfully extracted text from DOCX file")
+                apply_standard_formatting(extracted_text, "Programming_content.docx", output_path)
+        
         elif filename.endswith(".txt"):
-            extracted_text = get_text_from_txt(filePath)
+            extracted_text = get_text_from_txt(input_path)
             if extracted_text:
-                print("Extracted text from TXT file:")
-                print(extracted_text)  # Print plain text directly
+                print("Successfully extracted text from TXT file")
+                apply_standard_formatting(extracted_text, "Programming_content.docx", output_path)
+        
         elif filename.endswith(".pdf"):
-            extracted_text = get_text_from_pdf(filePath)
+            extracted_text = get_text_from_pdf(input_path)
             if extracted_text:
-                print("Extracted text from PDF file:")
-                print(extracted_text)  # Print plain text directly
+                print("Successfully extracted text from PDF file")
+                apply_standard_formatting(extracted_text, "Programming_content.docx", output_path)
+        else:
+            print("Unsupported file type. Please use .txt, .docx, or .pdf files.")
     else:
         print("File not found. Please check the file name and try again.")
-
 
 if __name__ == "__main__":
     main()
